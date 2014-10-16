@@ -9,7 +9,10 @@ import csv
 import sys
 import os
 
-stations = json.load(open("station-list.csv", "r+"))
+try:
+	stations = json.load(open("station-list.csv", "r+")) 
+except:
+	stations = []
 
 if len(stations) <= 0: 
 	# load stations from API
@@ -23,6 +26,7 @@ if len(stations) <= 0:
 	if len(stations) > 0: 
 		json.dump(stations, open("station-list.csv", "w+"))
 
+		
 class BikeTest():
 
 	def __init__(stations, vehicle_capacity=10):
@@ -50,8 +54,8 @@ class BikeTest():
 			if bikes > station['spacesAvailable']: bikes = station['spacesAvailable']
 			current += bikes
 			
-			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" ] )
-			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" ] )
+			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" } )
+			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" } )
 		
 		#assert( current == nodes )
 		
@@ -77,8 +81,8 @@ class BikeTest():
 			if bikes > station['spacesAvailable']: bikes = station['spacesAvailable']
 			current += bikes
 			
-			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" ] )
-			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" ] )
+			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" } )
+			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" } )
 		
 		#assert( current == nodes )
 		
@@ -103,8 +107,8 @@ class BikeTest():
 			if bikes > station['spacesAvailable']: bikes = station['spacesAvailable']
 			current += bikes
 			
-			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" ] )
-			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" ] )
+			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" } )
+			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" } )
 		
 		#assert( current == nodes )
 		
@@ -129,8 +133,8 @@ class BikeTest():
 			if bikes > station['spacesAvailable']: bikes = station['spacesAvailable']
 			current += bikes
 			
-			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" ] )
-			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" ] )
+			if s in hubs: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" } )
+			else: sample.append( {'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" } )
 		
 		#assert( current == nodes )
 		
@@ -155,8 +159,8 @@ class BikeTest():
 			if bikes > station['spacesAvailable']: bikes = station['spacesAvailable']
 			current += bikes
 			
-			if s in hubs: sample.append( {'rack': s, 'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" ] )
-			else: sample.append( {'rack': s, 'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" ] )
+			if s in hubs: sample.append( {'rack': s, 'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':hub_capacity, 'hub': "true" } )
+			else: sample.append( {'rack': s, 'x': station['x'], 'y': station['y'], 'bikes': bikes, 'spaces':station['spacesAvailable'], 'hub': "false" } )
 
 		while num_violate > 0:
 			id = random.randint(0, len(sample))
